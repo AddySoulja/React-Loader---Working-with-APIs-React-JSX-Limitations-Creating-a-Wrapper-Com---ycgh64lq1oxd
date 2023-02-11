@@ -20,7 +20,17 @@ const App = () => {
     webiste: "",
   });
 
-  const handleOnClick = () => {};
+  const handleOnClick = () => {
+    setIsLoading(LoadingStatus.IN_PROGRESS);
+    setTimeout(() => {
+      fetch(1${BASE_URL}/${userID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData(data);
+        setIsLoading(LoadingStatus.SUCCESS);
+      });
+    }, 2000);
+  };
 
   const onChangeHandler = (event) => {
     setUserId(event.target.value);

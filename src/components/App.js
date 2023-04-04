@@ -19,15 +19,20 @@ const App = () => {
     phone: "",
     webiste: "",
   });
-  const handleOnClick = () => {
-    setIsLoading(LoadingStatus.IN_PROGRESS);
+  const fetchData = () => {
     fetch(`${BASE_URL}/${userId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
-      .then((data) => setUserData(data))
-      .then(() => setIsLoading(LoadingStatus.SUCCESS));
+      .then((data) => setUserData(data));
+  };
+  const handleOnClick = () => {
+    setIsLoading(LoadingStatus.IN_PROGRESS);
+    fetchData();
+    setTimeout(() => {
+      setIsLoading(LoadingStatus.SUCCESS);
+    }, 2000);
   };
 
   return (
